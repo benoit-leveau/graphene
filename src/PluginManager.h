@@ -4,11 +4,10 @@
 
 #include "PluginInterface.h"
 
-#if defined MACOS || defined LINUX
+#ifndef WIN32
 #include <dlfcn.h>
 #include <sys/types.h>
 #include <dirent.h>
-
 #endif
 
 #ifdef WIN32

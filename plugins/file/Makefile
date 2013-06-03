@@ -1,6 +1,6 @@
 CC=g++
-CFLAGS=-c -fPIC -Wall -I/code/tpl/el6/gcc-4.4.6/boost/1.44.0/include -I../../src/
-LDFLAGS=-shared
+CFLAGS=-c -fPIC -Wall -I/Users/benoit/Documents/Prog/libs/include -I../../src
+LDFLAGS=-shared -L/Users/benoit/Documents/Prog/libs/lib -lboost_system
 SOURCES=src/dllMain.cpp src/fileNodes.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 LIBRARY=fileNodes.so
