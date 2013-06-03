@@ -29,3 +29,10 @@ List of Nodes
 * Loops: ForNode, WhileNode
 * Operations: ConcatNode, AddMultIntNode, GenericNode
 * Utilities: ConsoleOutput
+
+Dependencies
+=============
+
+graphene depends on the following:
+* boost: http://www.boost.org/
+* boost_threadpool: http://threadpool.sourceforge.net/
