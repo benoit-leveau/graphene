@@ -5,6 +5,10 @@
 #include "NodeFactory.h"
 #include "PluginManager.h"
 
+#ifndef WIN32
+#include <sys/stat.h>
+#endif // WIN32
+
 #define PLUGINS_DIR L"plugins/"
 
 Application::Application()
@@ -16,7 +20,13 @@ Application::Application()
 	c[1] = 0;
 	boost::filesystem::wpath pluginsPath(wszAppPath);
 #else
-    boost::filesystem::wpath pluginsPath( boost::filesystem::current_path<boost::filesystem::wpath>() );
+    char linkname[200];
+    ssize_t r = readlink("/proc/self/exe", linkname, 200);
+    linkname[r] = '\0';
+    // Convert to a wchar_t*
+    wchar_t wcstring[200];
+    mbstowcs(wcstring, linkname, r);
+    boost::filesystem::wpath pluginsPath = boost::filesystem::wpath(wcstring).parent_path();
 #endif
 	pluginsPath /= PLUGINS_DIR;
 	PluginManager::create()->init(pluginsPath);
