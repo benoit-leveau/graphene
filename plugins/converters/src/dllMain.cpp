@@ -2,6 +2,8 @@
 #include "common.h"
 #include "converters.h"
 
+extern "C"
+{
 const char *getPluginDesc(void)
 {
 	static std::string strDescription("Converter nodes plug-in");
@@ -20,4 +22,5 @@ PluginInterface *getPluginInterface(int index)
 		case 0: { return ItoANodeInterface::instance(); break; }
 	}
 	return NULL;
+}
 }

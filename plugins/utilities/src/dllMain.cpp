@@ -2,6 +2,8 @@
 #include "common.h"
 #include "utilities.h"
 
+extern "C"
+{
 const char *getPluginDesc(void)
 {
 	static std::string strDescription("Utilities nodes plug-in");
@@ -20,4 +22,5 @@ PluginInterface *getPluginInterface(int index)
 		case 0: { return ConsoleOutputNodeInterface::instance(); break; }
 	}
 	return NULL;
+}
 }

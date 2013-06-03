@@ -2,6 +2,8 @@
 #include "common.h"
 #include "operations.h"
 
+extern "C"
+{
 const char *getPluginDesc(void)
 {
 	static std::string strDescription("Add node plug-in");
@@ -22,4 +24,5 @@ PluginInterface *getPluginInterface(int index)
 		case 2: { return GenericAddNodeInterface::instance(); break; }
 	}
 	return NULL;
+}
 }

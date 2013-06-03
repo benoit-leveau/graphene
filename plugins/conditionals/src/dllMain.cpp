@@ -2,6 +2,8 @@
 #include "common.h"
 #include "conditionalNodes.h"
 
+extern "C"
+{
 const char *getPluginDesc(void)
 {
 	static std::string strDescription("Conditional nodes plug-in");
@@ -20,4 +22,5 @@ PluginInterface *getPluginInterface(int index)
 		case 0: { return IfNodeInterface::instance(); break; }
 	}
 	return NULL;
+}
 }

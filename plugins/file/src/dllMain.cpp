@@ -2,6 +2,8 @@
 #include "common.h"
 #include "fileNodes.h"
 
+extern "C"
+{
 const char *getPluginDesc(void)
 {
 	static std::string strDescription("File nodes plug-in");
@@ -21,4 +23,5 @@ PluginInterface *getPluginInterface(int index)
 		case 1: { return StreamFileNodeInterface::instance(); break; }
 	}
 	return NULL;
+}
 }

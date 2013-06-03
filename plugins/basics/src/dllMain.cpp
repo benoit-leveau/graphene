@@ -2,6 +2,8 @@
 #include "common.h"
 #include "nodes.h"
 
+extern "C"
+{
 const char *getPluginDesc(void)
 {
 	static std::string strDescription("Basic nodes plug-in");
@@ -25,4 +27,5 @@ PluginInterface *getPluginInterface(int index)
 		case 5: { return Matrix3NodeInterface::instance(); break; }
 	}
 	return NULL;
+}
 }
