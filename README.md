@@ -1,7 +1,7 @@
 graphene
 ========
 
-[WIP] Dataflow Programming Framework with interesting features
+[WIP] Dataflow Programming Framework with interesting features not found usually in node editors like loops or streamable data.
 
 Features
 ========
