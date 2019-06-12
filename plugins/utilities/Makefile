@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-c -fPIC -Wall -I/code/tpl/el6/gcc-4.4.6/boost/1.44.0/include -I../../src/
+CFLAGS=-c -fPIC -Wall -I/milk/code/central/include/centos7/gcc-6.3.0/ -I../../src/ -std=c++11 -Wno-deprecated
 LDFLAGS=-shared
 SOURCES=src/dllMain.cpp src/utilities.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
