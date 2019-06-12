@@ -30,6 +30,26 @@ List of Nodes
 * Operations: ConcatNode, AddMultIntNode, GenericNode
 * Utilities: ConsoleOutput
 
+Example Graphs
+==============
+
+This example shows how to connect an *IfNode* in a graph.
+
+![If Node](/doc/test_if_node.png)
+
+This example shows how to use a *ForNode*. This is slightly more complex, as you need to connect the subgraph's output to the ForNode but also you need to connect the ForNode's current iteration to the subgraph.
+
+![For Node](/doc/test_for_node.png)
+
+This example shows how a *FileNode* can be used to read data from a file and pass it on to another node.
+
+![File Node](/doc/test_file_node.png)
+
+This example shows the same graph but this time with a *StreamFileNode* which will stream its data to the Console node.
+
+![StreamFile Node](/doc/test_stream_file_node.png)
+
+
 Dependencies
 =============
 
