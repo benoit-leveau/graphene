@@ -1,0 +1,7 @@
+digraph {
+    rankdir=BT;
+    Console -> ROOT;
+    File -> Console;
+    String -> File [label="filename"];
+}
+

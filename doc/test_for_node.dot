@@ -1,0 +1,18 @@
+digraph {
+    rankdir=BT;
+    For -> ROOT;
+    Integer -> For [label="nb_iterations"];
+    subgraph cluster_0 {
+        label="For Loop";
+        For -> ItoA [label="id_iteration"];
+        Console -> For;
+        GenericAdd -> Console;
+        String -> GenericAdd;
+        ItoA -> GenericAdd;
+        { rank=same; ItoA}
+        { rank=same; Console}
+    }
+    { rank=same; ROOT}
+    { rank=same; For, Integer}
+}
+

@@ -1,0 +1,12 @@
+digraph {
+    rankdir=BT;
+    Console -> ROOT;
+    GenAdd -> Console;
+    ItoA -> GenAdd;
+    If -> ItoA;
+    Bool -> If [label="condition"];
+    Point3 -> If [label="then"];
+    Matrix3 -> If [label="else"];
+    String -> GenAdd;
+}
+

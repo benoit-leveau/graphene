@@ -1,0 +1,8 @@
+digraph {
+    rankdir=BT;
+    StreamFile[color=red];
+    Console -> ROOT;
+    StreamFile -> Console [label="streamed data",color=red,penwidth=3];
+    String -> StreamFile [label="filename"];
+}
+
