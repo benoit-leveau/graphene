@@ -35,4 +35,4 @@ Dependencies
 
 graphene depends on the following:
 * boost: http://www.boost.org/
-* boost_threadpool: http://threadpool.sourceforge.net/
+* cptl: https://github.com/vit-vit/ctpl

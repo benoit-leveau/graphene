@@ -5,6 +5,8 @@
 class LINKTYPE ClientGraph
 {
 public:
+    virtual ~ClientGraph(){}
+
 	virtual int addNode(ClassID id) = 0;
 
 	virtual void editNodeParameters(int id_node, const Value &setting) = 0;

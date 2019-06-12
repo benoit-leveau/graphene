@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 #endif // WIN32
 
-#define PLUGINS_DIR L"plugins/"
+#define PLUGINS_DIR "plugins/"
 
 Application::Application()
 {
@@ -18,15 +18,12 @@ Application::Application()
 	GetModuleFileNameW(NULL, wszAppPath, 260);
 	wchar_t *c = wcsrchr(wszAppPath, '\\');
 	c[1] = 0;
-	boost::filesystem::wpath pluginsPath(wszAppPath);
+	boost::filesystem::path pluginsPath(wszAppPath);
 #else
     char linkname[200];
     ssize_t r = readlink("/proc/self/exe", linkname, 200);
     linkname[r] = '\0';
-    // Convert to a wchar_t*
-    wchar_t wcstring[200];
-    mbstowcs(wcstring, linkname, r);
-    boost::filesystem::wpath pluginsPath = boost::filesystem::wpath(wcstring).parent_path();
+    boost::filesystem::path pluginsPath = boost::filesystem::path(linkname).parent_path();
 #endif
 	pluginsPath /= PLUGINS_DIR;
 	PluginManager::create()->init(pluginsPath);

@@ -24,24 +24,24 @@
 #endif
 
 #ifdef WIN32
-#define PLUGIN_EXTENSION L".dll"
+#define PLUGIN_EXTENSION ".dll"
 #elif defined MACOS
-#define PLUGIN_EXTENSION L".dylib"
+#define PLUGIN_EXTENSION ".dylib"
 #else
-#define PLUGIN_EXTENSION L".so"
+#define PLUGIN_EXTENSION ".so"
 #endif
 
 struct Plugin
 {
 	PluginHandle hLibraryModule;
-	std::wstring filename;
+	std::string filename;
 	std::string description;
 	std::vector<PluginInterface*> interfaces;
 
 	Plugin()
 		:
 		hLibraryModule(NULL),
-		filename(L""),
+		filename(""),
 		description("")
 	{
 	}
@@ -82,10 +82,10 @@ private:
 	// data members
 	std::vector< boost::shared_ptr<Plugin> > listOfPlugins;					// list of plugins loaded in memory
 	std::map<PluginInterface::PluginType, std::stack<PluginHandler*> > listOfHandlers;	// list of plugin handlers
-	boost::filesystem::wpath plugins_folder_path;
+	boost::filesystem::path plugins_folder_path;
 
 	// private methods
-	PluginHandle loadPluginHandle(const boost::filesystem::wpath & plugin_path)const;
+	PluginHandle loadPluginHandle(const boost::filesystem::path & plugin_path)const;
 	void connectPluginsToHandler(PluginInterface::PluginType type, PluginHandler* handler, PluginHandler* handlerToRemove=NULL);
 	void hookHandlerToPlugin(PluginInterface* interface_, bool bHook);
 
@@ -99,9 +99,9 @@ public:
 	//	public methods
 	void registerHandler(PluginInterface::PluginType type, PluginHandler* handler);
 	void unregisterHandler(PluginInterface::PluginType type, PluginHandler* handler);
-	void init(boost::filesystem::wpath & plugins_path);
-	int loadPlugin(const boost::filesystem::wpath & plugin_path);
-	boost::filesystem::wpath getFolder() const {return plugins_folder_path;}
+	void init(boost::filesystem::path & plugins_path);
+	int loadPlugin(const boost::filesystem::path & plugin_path);
+	boost::filesystem::path getFolder() const {return plugins_folder_path;}
 	void getListOfPlugins(std::vector< boost::shared_ptr<Plugin> > &list) const{list = listOfPlugins;}
 	void RemovePlugin(boost::shared_ptr<Plugin> p);
 	// ------------------------------------

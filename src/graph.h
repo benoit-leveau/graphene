@@ -56,9 +56,11 @@ private:
 	// edit connections
 	void setStream(int id_node);
 	void setDirty(int id);
+
+    friend void executeNode_threaded(size_t threadid, Graph *graph, int id, bool bSubExecute);
 public:
 	Graph();
-	~Graph();
+	virtual ~Graph();
 
 	virtual int addNode(ClassID id);
 

@@ -15,6 +15,7 @@ class Node
 {
 public:
   Node(){}
+  virtual ~Node(){}
 
   // inputs
   virtual int getNbInputPort() = 0;
@@ -43,6 +44,7 @@ class NodeInterface : public PluginInterface
 {
 public:
   NodeInterface(){}
+  virtual ~NodeInterface(){};
 
   //virtual void init() = 0;
   //virtual void exit() = 0;

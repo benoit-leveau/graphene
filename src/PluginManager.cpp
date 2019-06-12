@@ -36,18 +36,18 @@ void PluginHandler::registerMyself()
 	}
 }
 
-void PluginManager::init(fs::wpath& pluginFolder)
+void PluginManager::init(fs::path& pluginFolder)
 {
-	std::cout << "initializing plugin manager with folder: " << toAscii(pluginFolder.string()).c_str() << std::endl;
+	std::cout << "initializing plugin manager with folder: " << /*toAscii*/(pluginFolder.string()).c_str() << std::endl;
 	if (is_directory(pluginFolder))
 	{
 		plugins_folder_path = pluginFolder;
-		for (fs::wdirectory_iterator itr(plugins_folder_path); itr != fs::wdirectory_iterator(); ++itr)
+		for (fs::directory_iterator itr(plugins_folder_path); itr != fs::directory_iterator(); ++itr)
 		{
-			std::cout << ">>> loading plugin: " << toAscii(itr->path().string()).c_str() << std::endl;
+			std::cout << ">>> loading plugin: " << /*toAscii*/(itr->path().string()).c_str() << std::endl;
 
 			// skip folders and non-dll files
-			if (is_directory(itr->path()) || (fs::extension(itr->path()) != std::wstring(PLUGIN_EXTENSION))) continue;
+			if (is_directory(itr->path()) || (fs::extension(itr->path()) != std::string(PLUGIN_EXTENSION))) continue;
 
 			// try to load the dll
 			loadPlugin(itr->path());
@@ -55,20 +55,20 @@ void PluginManager::init(fs::wpath& pluginFolder)
 	}
 }
 
-PluginHandle PluginManager::loadPluginHandle(const fs::wpath& plugin_path) const
+PluginHandle PluginManager::loadPluginHandle(const fs::path& plugin_path) const
 {
 #ifdef WIN32
 	return LoadLibraryExW(plugin_path.string().c_str(), NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
 #elif defined MACOS
-	const char* szPath = toAscii(plugin_path.string()).c_str();
+	const char* szPath = /*toAscii*/(plugin_path.string()).c_str();
 	return dlopen(szPath, RTLD_LAZY);
 #else
-	const char* szPath = toAscii(plugin_path.string()).c_str();
+	const char* szPath = /*toAscii*/(plugin_path.string()).c_str();
 	return dlopen(szPath, RTLD_LAZY);
 #endif
 }
 
-int PluginManager::loadPlugin(const fs::wpath& plugin_path)
+int PluginManager::loadPlugin(const fs::path& plugin_path)
 {
 	PluginHandle hLibraryModule = loadPluginHandle(plugin_path);
 

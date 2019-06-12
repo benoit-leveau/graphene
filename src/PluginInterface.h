@@ -6,15 +6,16 @@ class PluginInterface
 {
 	public:
 
-		enum PluginType
-		{
+    enum PluginType
+        {
 			PT_Node = 0,
 		};
 
-		// abstract class used to derive plug-ins from
-		virtual void init() = 0;
-		virtual void exit() = 0;
-		virtual PluginType getInterfaceType() const = 0;
+    // abstract class used to derive plug-ins from
+    virtual void init() = 0;
+    virtual void exit() = 0;
+    virtual PluginType getInterfaceType() const = 0;
+    virtual ~PluginInterface(){}
 };
 
 // needed exported function "getPluginDesc"

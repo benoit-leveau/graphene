@@ -3,6 +3,7 @@
 #include "boost_time_util.h"
 #include "connection_advanced.h"
 #include <boost/thread/condition_variable.hpp>
+#include <boost/interprocess/sync/scoped_lock.hpp>
 
 StreamConnection::StreamConnection(int src_node, int dest_node) : 
 	Connection(src_node, dest_node), 

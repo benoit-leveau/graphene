@@ -2,7 +2,8 @@
 #include "common.h"
 #include "graph.h"
 #include "NodeFactory.h"
-#include <boost/threadpool.hpp>
+#include "ctpl.h"
+#include <boost/thread.hpp>
 
 namespace interfaces
 {
@@ -162,6 +163,7 @@ void Graph::setStream(int id_node)
 
 void Graph::setDirty(int id_node)
 {
+    std::cout << "setDirty node #" << id_node << std::endl;
 	multiConnection connections = getOutputConnections(id_node, false);
 	for (multiConnection::iterator it = connections.begin(); it != connections.end(); ++it)
 	{
@@ -345,6 +347,11 @@ void Graph::executeNode(int id, bool bSubExecute)
 	closeInputOutputs(input, output);
 }
 
+void executeNode_threaded(size_t threadid, Graph *graph, int id, bool bSubExecute)
+{
+    graph->executeNode(id, bSubExecute);
+}
+
 void Graph::execute(int nb_threads)
 {
 	OUTPUT("executing graph...");
@@ -402,12 +409,13 @@ void Graph::execute(int nb_threads)
 	}
 
 	{
-		boost::threadpool::pool pool(nb_threads);
+        // create the thread pool
+        ctpl::thread_pool pool(nb_threads);
 		for (std::vector<int>::const_reverse_iterator it = tasks.rbegin(); it != tasks.rend(); ++it)
 		{
-			pool.schedule(boost::bind(&Graph::executeNode, this, *it, false));
+            pool.push(executeNode_threaded, this, *it, false);
 		}
-		pool.wait();
+		pool.stop(true);
 	}
 
 	// wait for end of all threaded tasks
