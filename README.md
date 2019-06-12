@@ -6,7 +6,7 @@ graphene
 Features
 ========
 
-Plugin system: Node types are loaded and registered at run-time. The implementation is based on 3dsMax plugin mechanism.
+Plugin system: Node types are loaded and registered at run-time. The implementation is loosely based on the 3dsMax plugin mechanism.
 
 Advanced features for nodes:
 * <b>Dynamic Typing</b>: a node can define an input or output plug as dynamic, meaning it will accept different types of data.
